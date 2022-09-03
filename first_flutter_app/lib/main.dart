@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/ui/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -14,7 +15,7 @@ class App extends StatelessWidget {
           backgroundColor: Color(0xff0a0e21),
         ),
       ),
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }
