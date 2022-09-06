@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/resources/assets.dart';
 import 'package:first_flutter_app/ui/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,48 @@ class App extends StatelessWidget {
   Widget build(BuildContext contex) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+        primaryColor: Colors.red,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.redAccent.shade100,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.red,
+            onPrimary: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            minimumSize: Size(0, 40),
+            textStyle: TextStyle(
+              fontFamily: Assets.loginFont,
+              fontSize: 20,
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: Colors.red,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: Colors.black,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 2,
+            ),
+          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        ),
+      ),
+      darkTheme: ThemeData.dark().copyWith(
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xff0a0e21),
         ),
