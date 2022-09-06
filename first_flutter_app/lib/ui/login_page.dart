@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                 child: TextField(
                   controller: pwController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Password",
                   ),
                   obscureText: hidePassword,
