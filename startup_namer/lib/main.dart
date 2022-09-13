@@ -9,17 +9,10 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Startup Name Generator",
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Startup Name Generator"),
-        ),
-        body: const Center(
-          child: RandomWords(),
-        ),
-      ),
+      home: RandomWords(),
     );
   }
 }
@@ -35,39 +28,82 @@ class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18);
   final _saved = <WordPair>{};
+  void _pushSaved() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = tiles.isNotEmpty
+              ? ListTile.divideTiles(
+                  context: context,
+                  tiles: tiles,
+                ).toList()
+              : <Widget>[];
+
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Saved Suggestions'),
+            ),
+            body: ListView(children: divided),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(18),
-      itemBuilder: (context, i) {
-        if (i.isOdd) return const Divider(); /*2*/
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Startup Name Generator"),
+        actions: [
+          IconButton(
+            onPressed: _pushSaved,
+            icon: const Icon(Icons.list),
+          )
+        ],
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(18),
+        itemBuilder: (context, i) {
+          if (i.isOdd) return const Divider();
 
-        final index = i ~/ 2; /*3*/
-        if (index >= _suggestions.length) {
-          _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-        }
-        final alreadySaved = _saved.contains(_suggestions[index]);
-        return ListTile(
-          title: Text(
-            _suggestions[index].asPascalCase,
-            style: _biggerFont,
-          ),
-          trailing: Icon(
-            alreadySaved ? Icons.favorite : Icons.favorite_outline,
-            color: alreadySaved ? Colors.red : null,
-            semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
-          ),
-          onTap: () {
-            setState(() {
-              if (alreadySaved) {
-                _saved.remove(_suggestions[index]);
-              } else {
-                _saved.add(_suggestions[index]);
-              }
-            });
-          },
-        );
-      },
+          final index = i ~/ 2;
+          if (index >= _suggestions.length) {
+            _suggestions.addAll(generateWordPairs().take(10));
+          }
+          final alreadySaved = _saved.contains(_suggestions[index]);
+          return ListTile(
+            title: Text(
+              _suggestions[index].asPascalCase,
+              style: _biggerFont,
+            ),
+            trailing: Icon(
+              alreadySaved ? Icons.favorite : Icons.favorite_outline,
+              color: alreadySaved ? Colors.red : null,
+              semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
+            ),
+            onTap: () {
+              setState(() {
+                if (alreadySaved) {
+                  _saved.remove(_suggestions[index]);
+                } else {
+                  _saved.add(_suggestions[index]);
+                }
+              });
+            },
+          );
+        },
+      ),
     );
   }
 }
