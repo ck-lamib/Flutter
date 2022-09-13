@@ -9,10 +9,16 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Startup Name Generator",
-      home: RandomWords(),
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 226, 93, 15),
+          foregroundColor: Colors.white70,
+        ),
+      ),
+      home: const RandomWords(),
     );
   }
 }
@@ -48,7 +54,6 @@ class _RandomWordsState extends State<RandomWords> {
                   tiles: tiles,
                 ).toList()
               : <Widget>[];
-
           return Scaffold(
             appBar: AppBar(
               title: const Text('Saved Suggestions'),
@@ -69,6 +74,7 @@ class _RandomWordsState extends State<RandomWords> {
           IconButton(
             onPressed: _pushSaved,
             icon: const Icon(Icons.list),
+            tooltip: 'Saved Suggestions',
           )
         ],
       ),
