@@ -1,16 +1,21 @@
-# calculator_app
+###                 This is my 3rd flutter project:
+### About the project:
+  I have developed this without any aid and with the only basic knowledge that i have:
 
-A new Flutter project.
+### About this App
+  This app simply calculate the basic math calculation. This is just a simple calculator app and doesnot have that much things to learn.
 
-## Getting Started
+  
+### Outcomes from the app (I learned following things):
+  
+  1. About implementaion of stateless and stateful widget by myself.
+  
+  3. Difference between Errors and Exception.
+  
+  4. How to use different operator and string interplotation.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  5. Working with custom method and applying it
+  
+  6. Working with row and column widget, elevated button and button style
+  
+  7. Working with axis alingement.
