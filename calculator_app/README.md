@@ -4,8 +4,9 @@
 
 ### About this App
   This app simply calculate the basic math calculation. This is just a simple calculator app and doesnot have that much things to learn.
-
   
+   <img width="388" alt="image" src="https://user-images.githubusercontent.com/108686886/190450374-338dc6f4-ec7b-4741-8cca-4e91477ec3db.png">
+        
 ### Outcomes from the app (I learned following things):
   
   1. About implementaion of stateless and stateful widget by myself.
