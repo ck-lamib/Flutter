@@ -1,5 +1,6 @@
 import 'package:calculator_app_geekforgeek/button_style.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,7 +71,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   calculate() {
-    // if();
+    var finalInput = userInput.replaceAll("X", "*");
+    try {
+      Parser p = Parser();
+      Expression exp = p.parse(finalInput);
+      ContextModel cm = ContextModel();
+      double eval = exp.evaluate(EvaluationType.REAL, cm);
+      answer = eval.toString();
+      print('Expression: $exp');
+      print('Evaluated expression: $eval\n  (with context: $cm)');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Please enter a valid expression"),
+        behavior: SnackBarBehavior.fixed,
+      ));
+    }
   }
 
   @override
@@ -93,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     userInput,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 40,
                     ),
                   ),
                 ),
@@ -149,18 +164,30 @@ class _HomePageState extends State<HomePage> {
                         buttonText: const Icon(Icons.backspace),
                         color: Colors.deepPurple[50],
                       );
+                    } else if (buttons[index] == "=") {
+                      return MyButton(
+                        buttonTap: () {
+                          setState(() {
+                            calculate();
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: Colors.white,
+                        color: Colors.green,
+                      );
+                    } else {
+                      return MyButton(
+                        buttonTap: () {
+                          setState(() {
+                            userInput += buttons[index];
+                          });
+                        },
+                        buttonText: buttons[index],
+                        textColor: isOperator(buttons[index]) ? Colors.white : Colors.deepPurple,
+                        color:
+                            isOperator(buttons[index]) ? Colors.deepPurple : Colors.deepPurple[50],
+                      );
                     }
-
-                    return MyButton(
-                      buttonTap: () {
-                        setState(() {
-                          userInput += buttons[index];
-                        });
-                      },
-                      buttonText: buttons[index],
-                      textColor: isOperator(buttons[index]) ? Colors.white : Colors.deepPurple,
-                      color: isOperator(buttons[index]) ? Colors.deepPurple : Colors.deepPurple[50],
-                    );
                   }),
             ),
           ),
