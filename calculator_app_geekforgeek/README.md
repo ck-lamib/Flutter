@@ -1,16 +1,18 @@
-# calculator_app_geekforgeek
+###                 This is my 4th flutter project:
+### About the project:
+  I have developed this with some guide from geek for geek and (https://youtu.be/OaUWPZ0AZfI)
 
-A new Flutter project.
+### About this App
+  This app uses math_expression package of flutter and make simple BODMAS calculation.
+  
+   <img width="339" alt="image" src="https://user-images.githubusercontent.com/108686886/190705333-262caa94-d3c5-4c66-b171-b5d67674d258.png">
+        
+### Outcomes from the app (I learned following things):
+  
+  1. How to make different dart page and used it.
+  
+  2. How to make small reusable component.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  3. How to use snackBar( ie., ScaffoldMessenger.of(context).showSnackBar(SnackBar()))
+  
+  4. Working with gridview.builder()
